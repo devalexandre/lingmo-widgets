@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/Main.qml</file>
+        <file>qml/ClockWidget.qml</file>
+        <file>qml/WeatherWidget.qml</file>
+        <file>qml/WidgetCenter.qml</file>
+        <file>qml/OverlayCard.qml</file>
+        <file>qml/Card.qml</file>
+    </qresource>
+</RCC>

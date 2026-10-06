@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Lingmo Widgets
+Exec=lingmo-widgets
+Type=Application
+NoDisplay=true
+X-KDE-autostart-phase=1
