@@ -6,5 +6,7 @@
         <file>qml/WidgetCenter.qml</file>
         <file>qml/OverlayCard.qml</file>
         <file>qml/Card.qml</file>
+        <file>qml/LocationPicker.qml</file>
+        <file>qml/weather.js</file>
     </qresource>
 </RCC>

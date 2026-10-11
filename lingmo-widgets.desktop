@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Widgets
+Name[pt_BR]=Widgets
+GenericName=Desktop widgets
+GenericName[pt_BR]=Widgets da área de trabalho
+Comment=Clock and weather on the desktop
+Comment[pt_BR]=Relógio e previsão do tempo na área de trabalho
+Exec=lingmo-widgets
+Icon=cs-desklets
+Terminal=false
+Categories=Utility;
+Keywords=widgets;widget;clock;weather;desktop;
+Keywords[pt_BR]=widgets;widget;relógio;clima;tempo;previsão;área de trabalho;
+StartupNotify=false

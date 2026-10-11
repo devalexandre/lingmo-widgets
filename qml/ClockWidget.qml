@@ -4,7 +4,7 @@ import LingmoUI.CompatibleModule 3.0 as LingmoUI
 
 OverlayCard {
     id: clockWindow
-    y: 80
+    topOffset: 80
     visible: true
 
     Column {

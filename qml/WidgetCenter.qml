@@ -71,6 +71,28 @@ LingmoUI.Window {
         }
     }
 
+    function open() {
+        root.show()
+        root.raise()
+        root.requestActivate()
+    }
+
+    // Opens the Center with the location search (click on the weather widget)
+    function chooseLocation() {
+        open()
+        locationPicker.open()
+    }
+
+    LocationPicker {
+        id: locationPicker
+        onPicked: (name, latitude, longitude) => {
+            widgetSettings.weatherLatitude = latitude
+            widgetSettings.weatherLongitude = longitude
+            // Set last: the widget reloads when the name changes
+            widgetSettings.weatherLocation = name
+        }
+    }
+
     ColumnLayout {
         anchors.fill: parent
         anchors.topMargin: root.header.height
@@ -130,6 +152,36 @@ LingmoUI.Window {
                     description: qsTr("Clima atual na sua região.")
                     checked: widgetSettings.weatherEnabled
                     onToggled: (checked) => widgetSettings.weatherEnabled = checked
+                }
+
+                // Location of the weather widget
+                Card {
+                    Layout.fillWidth: true
+                    visible: widgetSettings.weatherEnabled
+                    implicitHeight: locationRow.implicitHeight + LingmoUI.Units.largeSpacing * 2
+
+                    RowLayout {
+                        id: locationRow
+                        anchors.fill: parent
+                        anchors.leftMargin: LingmoUI.Units.largeSpacing * 1.5
+                        anchors.rightMargin: LingmoUI.Units.largeSpacing
+                        spacing: LingmoUI.Units.largeSpacing
+
+                        Label { text: "📍"; font.pointSize: LingmoUI.Theme.fontSize * 1.4 }
+
+                        Label {
+                            Layout.fillWidth: true
+                            elide: Text.ElideRight
+                            text: widgetSettings.weatherLocation || qsTr("Nenhum local escolhido")
+                            color: widgetSettings.weatherLocation ? LingmoUI.Theme.textColor
+                                                                  : LingmoUI.Theme.disabledTextColor
+                        }
+
+                        Button {
+                            text: widgetSettings.weatherLocation ? qsTr("Alterar") : qsTr("Escolher")
+                            onClicked: locationPicker.open()
+                        }
+                    }
                 }
             }
         }
