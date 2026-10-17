@@ -75,7 +75,7 @@ OverlayCard {
         Text {
             text: weatherWindow.current ? Weather.emoji(weatherWindow.current.code, weatherWindow.current.isDay)
                                         : "📍"
-            font.pointSize: LingmoUI.Theme.fontSize * 4.5
+            font.pointSize: Math.round(LingmoUI.Units.fontDisplay * 1.5)
             anchors.verticalCenter: parent.verticalCenter
         }
 
@@ -89,7 +89,7 @@ OverlayCard {
                       : "--°C"
                 color: LingmoUI.Theme.textColor
                 font.family: LingmoUI.Theme.fontFamily
-                font.pointSize: LingmoUI.Theme.fontSize * 2.6
+                font.pointSize: LingmoUI.Units.fontDisplay
                 font.bold: true
             }
 
@@ -104,9 +104,9 @@ OverlayCard {
                                  : weatherWindow.failed ? qsTr("Sem conexão") : qsTr("Carregando…")
                     return status + "\n" + weatherWindow.locationName
                 }
-                color: LingmoUI.Theme.disabledTextColor
+                color: LingmoUI.Theme.secondaryTextColor
                 font.family: LingmoUI.Theme.fontFamily
-                font.pointSize: LingmoUI.Theme.fontSize
+                font.pointSize: LingmoUI.Units.fontBody
             }
         }
     }

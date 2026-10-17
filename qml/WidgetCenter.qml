@@ -15,7 +15,7 @@ LingmoUI.Window {
 
     // Same window look as Lingmo Settings
     background.opacity: LingmoUI.Theme.darkMode ? 0.88 : 0.97
-    header.height: 40
+    header.height: LingmoUI.Units.windowHeaderHeight
     contentTopMargin: 0
 
     LingmoUI.WindowBlur {
@@ -26,7 +26,7 @@ LingmoUI.Window {
     }
 
     // One widget: emoji, name, description and its on/off switch
-    component WidgetRow: Card {
+    component WidgetRow: LingmoUI.Card {
         id: row
 
         property string emoji
@@ -46,7 +46,7 @@ LingmoUI.Window {
             anchors.rightMargin: LingmoUI.Units.largeSpacing
             spacing: LingmoUI.Units.largeSpacing
 
-            Label { text: row.emoji; font.pointSize: LingmoUI.Theme.fontSize * 1.8 }
+            Label { text: row.emoji; font.pointSize: LingmoUI.Units.fontTitle }
 
             ColumnLayout {
                 Layout.fillWidth: true
@@ -58,7 +58,7 @@ LingmoUI.Window {
                 }
                 Label {
                     text: row.description
-                    color: LingmoUI.Theme.disabledTextColor
+                    color: LingmoUI.Theme.secondaryTextColor
                     wrapMode: Text.WordWrap
                     Layout.fillWidth: true
                 }
@@ -103,7 +103,7 @@ LingmoUI.Window {
 
         Label {
             text: qsTr("Meus Widgets")
-            font.pointSize: LingmoUI.Theme.fontSize * 1.8
+            font.pointSize: LingmoUI.Units.fontTitle
             font.bold: true
             color: LingmoUI.Theme.textColor
             Layout.alignment: Qt.AlignHCenter
@@ -111,7 +111,7 @@ LingmoUI.Window {
 
         Label {
             text: qsTr("Ative ou desative os widgets da sua Área de Trabalho.")
-            color: LingmoUI.Theme.disabledTextColor
+            color: LingmoUI.Theme.secondaryTextColor
             Layout.alignment: Qt.AlignHCenter
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
@@ -155,7 +155,7 @@ LingmoUI.Window {
                 }
 
                 // Location of the weather widget
-                Card {
+                LingmoUI.Card {
                     Layout.fillWidth: true
                     visible: widgetSettings.weatherEnabled
                     implicitHeight: locationRow.implicitHeight + LingmoUI.Units.largeSpacing * 2
@@ -167,17 +167,17 @@ LingmoUI.Window {
                         anchors.rightMargin: LingmoUI.Units.largeSpacing
                         spacing: LingmoUI.Units.largeSpacing
 
-                        Label { text: "📍"; font.pointSize: LingmoUI.Theme.fontSize * 1.4 }
+                        Label { text: "📍"; font.pointSize: LingmoUI.Units.fontSubheading }
 
                         Label {
                             Layout.fillWidth: true
                             elide: Text.ElideRight
                             text: widgetSettings.weatherLocation || qsTr("Nenhum local escolhido")
                             color: widgetSettings.weatherLocation ? LingmoUI.Theme.textColor
-                                                                  : LingmoUI.Theme.disabledTextColor
+                                                                  : LingmoUI.Theme.secondaryTextColor
                         }
 
-                        Button {
+                        LingmoUI.ActionButton {
                             text: widgetSettings.weatherLocation ? qsTr("Alterar") : qsTr("Escolher")
                             onClicked: locationPicker.open()
                         }

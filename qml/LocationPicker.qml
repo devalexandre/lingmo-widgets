@@ -61,7 +61,7 @@ Popup {
         Label {
             text: qsTr("Local do clima")
             font.bold: true
-            font.pointSize: LingmoUI.Theme.fontSize * 1.2
+            font.pointSize: LingmoUI.Units.fontSubheading
             color: LingmoUI.Theme.textColor
         }
 
@@ -91,11 +91,12 @@ Popup {
                 picker.close()
             }
 
-            delegate: Card {
+            delegate: LingmoUI.Card {
                 required property var modelData
                 width: ListView.view.width
                 implicitHeight: column.implicitHeight + LingmoUI.Units.largeSpacing
-                hoverEnabled: true
+                clickable: true
+                onClicked: list.choose(modelData)
 
                 ColumnLayout {
                     id: column
@@ -112,24 +113,20 @@ Popup {
                     Label {
                         visible: text !== ""
                         text: modelData.detail
-                        color: LingmoUI.Theme.disabledTextColor
+                        color: LingmoUI.Theme.secondaryTextColor
                         Layout.fillWidth: true
                         elide: Text.ElideRight
                     }
                 }
-
-                TapHandler {
-                    onTapped: list.choose(modelData)
-                }
             }
 
-            Label {
+            LingmoUI.EmptyState {
                 anchors.centerIn: parent
                 width: parent.width
-                horizontalAlignment: Text.AlignHCenter
-                wrapMode: Text.WordWrap
-                color: LingmoUI.Theme.disabledTextColor
                 visible: list.count === 0
+                busy: picker.searching
+                iconSize: LingmoUI.Units.iconSizes.large
+                iconName: picker.failed ? "network-offline" : "edit-find"
                 text: picker.searching ? qsTr("Buscando…")
                       : picker.failed ? qsTr("Não foi possível buscar. Confira a conexão.")
                       : searchField.text.trim().length >= 2 ? qsTr("Nenhuma cidade encontrada")

@@ -16,16 +16,16 @@ OverlayCard {
             anchors.horizontalCenter: parent.horizontalCenter
             color: LingmoUI.Theme.textColor
             font.family: LingmoUI.Theme.fontFamily
-            font.pointSize: LingmoUI.Theme.fontSize * 4.5
+            font.pointSize: Math.round(LingmoUI.Units.fontDisplay * 1.5)
             font.bold: true
         }
 
         Text {
             id: dateText
             anchors.horizontalCenter: parent.horizontalCenter
-            color: LingmoUI.Theme.disabledTextColor
+            color: LingmoUI.Theme.secondaryTextColor
             font.family: LingmoUI.Theme.fontFamily
-            font.pointSize: LingmoUI.Theme.fontSize * 1.3
+            font.pointSize: LingmoUI.Units.fontSubheading
         }
     }
 
